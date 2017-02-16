@@ -1,0 +1,6 @@
+DEVPI_HOSTNAME=localhost
+DEVPI_REPO_HOME=/var/develenv/repositories/devpi
+DEVPI_CLIENT_HOME=/opt/ss/develenv/platform/devpi-client
+DEVPI_SERVER_HOME=/opt/ss/develenv/platform/devpi-server
+DEVPI_LISTEN_HOST=127.0.0.1
+DEVPI_LISTEN_PORT=4042
