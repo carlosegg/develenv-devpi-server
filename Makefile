@@ -8,10 +8,6 @@ CI_SERVER=$(shell dp_ci-server.sh)
 METRICS_FILE=sonar-project.properties
 METRICS_RH_VERSION=el7
 
-$(shell [ "$(VERSION)" != "" ] && echo $(VERSION) > VERSION)
-# The version is in VERSION FILE
-VERSION=$(shell cat VERSION)
-
 #Include all scm info in the package of the component
 SCM_URL=$(shell dp_scm_info.sh >SCM_INFO)
 

@@ -1,0 +1,45 @@
+*.py[co]
+
+# Packages
+*.egg
+*.egg-info
+.venv
+dist
+build
+eggs
+parts
+sdist
+develop-eggs
+.installed.cfg
+.tags
+tags
+.*.swp
+*.rpm
+test_sql
+
+# Installer logs
+pip-log.txt
+*.log
+access_log
+
+# Unit test / coverage reports
+.coverage
+target
+.tox
+junit*xml
+
+#Translations
+*.mo
+
+
+#Eclipse stuff
+.project
+.pydevproject
+.settings
+.idea*
+
+VERSION
+SCM_INFO
+#Tests
+_trial_temp
+sonar-project.properties
