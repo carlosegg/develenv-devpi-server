@@ -10,5 +10,5 @@ $DEVPI_COMMAND user -m root password=temporal
 $DEVPI_COMMAND logoff
 $DEVPI_COMMAND user -c develenv password=develenv email=develenv@softwaresano.com
 $DEVPI_COMMAND login develenv --password=develenv
-$DEVPI_COMMAND index -c dev
+$DEVPI_COMMAND index -c dev bases=/root/pypi
 $DEVPI_COMMAND use develenv/dev
