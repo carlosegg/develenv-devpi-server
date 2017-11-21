@@ -5,7 +5,7 @@ After=network-online.target httpd.service
 [Service]
 Type=forking
 EnvironmentFile=/etc/sysconfig/develenv-devpi
-PIDFile=${DEVPI_REPO_HOME}/.xproc/devpi-server/xprocess.PID
+PIDFile=/var/develenv/repositories/devpi/.xproc/devpi-server/xprocess.PID
 Restart=always
 ExecStart=/opt/ss/develenv/platform/devpi-server/bin/start-devpi.sh
 ExecStop=/opt/ss/develenv/platform/devpi-server/bin/devpi-server --serverdir ${DEVPI_REPO_HOME} --stop

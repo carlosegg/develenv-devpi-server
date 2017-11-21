@@ -117,8 +117,6 @@ build-libs: devlibs
 	@cp -r $(VIRTUALENV_PATH)$(PYTHON_SITE_REL)/* $(RPM_BUILD_ROOT)$(LIB_DIR)
 	@rm -Rf $(RPM_BUILD_ROOT)$(LIB_DIR)/pip
 	@rm -Rf $(RPM_BUILD_ROOT)$(LIB_DIR)/pip-*
-	@rm -Rf $(RPM_BUILD_ROOT)$(LIB_DIR)/setuptools
-	@rm -Rf $(RPM_BUILD_ROOT)$(LIB_DIR)/setuptools-*
 
 install: build-libs
 	# this will install source code to dest folder and create running script
