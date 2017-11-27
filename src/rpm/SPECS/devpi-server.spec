@@ -17,7 +17,7 @@
 Summary:    reliable private and pypi.python.org caching server
 Name:       devpi-server
 Version:    %{versionModule}
-Release:    4.3.0.%{releaseModule}
+Release:    4.3.1.%{releaseModule}
 BuildRoot:  %{_topdir}/BUILDROOT
 Prefix:     %{_prefix}
 License:    http://opensource.org/licenses/MIT
