@@ -8,9 +8,8 @@ else
 fi
 ${DEVPI_SERVER_HOME}/bin/devpi-server --host=${DEVPI_LISTEN_HOST} \
   --port=${DEVPI_LISTEN_PORT} --outside-url=http://${DEVPI_HOSTNAME}/devpi \
-  --serverdir ${DEVPI_REPO_HOME} --start
+--serverdir ${DEVPI_REPO_HOME} --start $initialize
 
 if [[ "$initialize" != "" ]]; then
   ${DEVPI_SERVER_HOME}/bin/init-devpi.sh
 fi
-
