@@ -6,7 +6,7 @@ STABLE_BUILD=$(shell dp_is_stable_build.sh)
 CI_SERVER=$(shell dp_ci-server.sh)
 #sonar configuration
 METRICS_FILE=sonar-project.properties
-METRICS_RH_VERSION=el7
+METRICS_RH_VERSION=el8
 
 #Include all scm info in the package of the component
 SCM_URL=$(shell dp_scm_info.sh >SCM_INFO)
@@ -18,7 +18,7 @@ PYLINT_REPORT=$(REPORT_DIR)/pylint.txt
 
 
 #site-packages
-PYTHON_INSTALLABLE=python2.7
+PYTHON_INSTALLABLE=python3.6
 PYTHON_SITE_REL=/lib/$(PYTHON_INSTALLABLE)/site-packages
 
 #pip options
@@ -33,7 +33,7 @@ DEVPI_URL=$(CI_SERVER)/devpi/develenv/dev/+simple/
 #PYPI_INDEX=-i $(DEVPI_URL)
 PIP=$(VIRTUALENV_PATH)/bin/python $(VIRTUALENV_PATH)/bin/pip
 PIP_EXTRA_OPTS=--timeout=180 $(PYPI_INDEX) 
-WHEEL_EXTRA_OPTS=--use-wheel --find-links=$(WHEEL_PATH) -r requirements.txt
+WHEEL_EXTRA_OPTS=--find-links=$(WHEEL_PATH) -r requirements.txt
 
 PYLINT=$(VIRTUALENV_PATH)/bin/pylint
 
@@ -66,11 +66,11 @@ default:
 testlibs: venv $(VIRTUALENV_PATH)$(PYTHON_SITE_REL)/testlibs
 $(VIRTUALENV_PATH)$(PYTHON_SITE_REL)/testlibs: requirements-test.txt 
 	@echo ">>> installing test libs from wheels"
-	@$(PIP) install --use-wheel --no-index --find-links=$(WHEEL_PATH) -r requirements-test.txt; \
+	@$(PIP) install  --no-index --find-links=$(WHEEL_PATH) -r requirements-test.txt; \
 	if [ $$? -ne 0 ]; then \
 		echo "wheel packages not found, downloading them"; \
-		$(PIP) wheel -w $(WHEEL_PATH) --no-use-wheel $(PIP_EXTRA_OPTS) -r requirements-test.txt; \
-		$(PIP) install --use-wheel --no-index --find-links=$(WHEEL_PATH) -r requirements-test.txt; \
+		$(PIP) wheel -w $(WHEEL_PATH)  $(PIP_EXTRA_OPTS) -r requirements-test.txt; \
+		$(PIP) install  --no-index --find-links=$(WHEEL_PATH) -r requirements-test.txt; \
 	fi
 	@if [ $$? -eq 0 ]; then \
 		touch $(VIRTUALENV_PATH)$(PYTHON_SITE_REL)/testlibs; fi
@@ -97,11 +97,11 @@ $(VIRTUALENV_PATH)/bin/activate:
 devlibs: venv $(VIRTUALENV_PATH)$(PYTHON_SITE_REL)/devlibs 
 $(VIRTUALENV_PATH)$(PYTHON_SITE_REL)/devlibs: requirements.txt 
 	@echo ">>> installing dev libs from wheels"
-	$(PIP) install --use-wheel --no-index --find-links=$(WHEEL_PATH) -r requirements.txt; \
+	$(PIP) install  --no-index --find-links=$(WHEEL_PATH) -r requirements.txt; \
 	if [ $$? -ne 0 ]; then \
 		echo "wheel packages not found, downloading them"; \
-		$(PIP) wheel -w $(WHEEL_PATH) --no-use-wheel $(PIP_EXTRA_OPTS) -r requirements.txt; \
-		$(PIP) install --use-wheel --no-index --find-links=$(WHEEL_PATH) -r requirements.txt; \
+		$(PIP) wheel -w $(WHEEL_PATH)  $(PIP_EXTRA_OPTS) -r requirements.txt; \
+		$(PIP) install  --no-index --find-links=$(WHEEL_PATH) -r requirements.txt; \
 	fi
 	@if [ $$? -eq 0 ]; then \
 		touch $(VIRTUALENV_PATH)$(PYTHON_SITE_REL)/devlibs; fi

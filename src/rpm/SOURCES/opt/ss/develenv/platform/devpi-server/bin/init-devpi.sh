@@ -1,7 +1,7 @@
 #!/bin/bash
 source /etc/sysconfig/develenv-devpi
 echo "[INFO] Initializing devpi repository"
-PYTHON_VERSION=$(python --version 2>&1|awk '{print $2}'|cut -d'.' -f1,2) 
+PYTHON_VERSION=$(python3 --version 2>&1|awk '{print $2}'|cut -d'.' -f1,2) 
 export PYTHONPATH=$DEVPI_HOME/lib/python${PYTHON_VERSION}/site-packages/
 DEVPI_COMMAND="${DEVPI_CLIENT_HOME}/bin/devpi"
 $DEVPI_COMMAND use http://localhost:${DEVPI_LISTEN_PORT}
