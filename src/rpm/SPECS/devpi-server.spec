@@ -21,7 +21,7 @@ Vendor:     softwaresano.com
 Group:      develenv
 BuildArch:  x86_64
 AutoReq:    no
-Requires:   python%{python3_version_nodots} ss-develenv-devpi-client httpd
+Requires:   python%{python3_version_nodots} ss-develenv-devpi-client httpd mod_proxy_html
 
 %description
 %{summary}
