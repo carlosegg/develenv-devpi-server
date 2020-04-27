@@ -21,7 +21,7 @@ Vendor:     softwaresano.com
 Group:      develenv
 BuildArch:  x86_64
 AutoReq:    no
-Requires:   python%{python3_version_nodots} ss-develenv-devpi-client ss-develenv-user >= 33 httpd
+Requires:   python%{python3_version_nodots} ss-develenv-devpi-client httpd
 
 %description
 %{summary}
@@ -34,6 +34,19 @@ make devclean
 cp -r %{_sourcedir}/* $RPM_BUILD_ROOT/
 make install HOME_DIR=$RPM_BUILD_ROOT/%{installdir} RPM_BUILD_ROOT=$RPM_BUILD_ROOT LIB_DIR=%{libdir} SITEPACKAGES_PATH=%{python3_sitearch}
 mkdir -p $RPM_BUILD_ROOT/%{devpi_repo}
+%pre
+#Create develenv user if not exists
+if [ "$(id -u develenv 2>/dev/null)" == "" ]; then
+   default_id=600
+   id_user=$(grep "^.*:.*:$default_id:" /etc/passwd)
+   id_group=$(grep "^.*:.*:$default_id:" /etc/group)
+   if [ "$id_user" == "" -a "$id_group" == "" ]; then
+      groupadd -g $default_id develenv
+      useradd -s /bin/bash -g $default_id -u $default_id develenv
+   else
+      useradd -s /bin/bash develenv
+   fi
+fi
 # ------------------------------------------------------------------------------
 # POST-INSTALL
 # ------------------------------------------------------------------------------
