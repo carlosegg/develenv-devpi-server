@@ -125,8 +125,15 @@ install: build-libs
 	echo ">>> Installing source distribution..."
 	@mkdir -p $(RPM_BUILD_ROOT)$(SITEPACKAGES_PATH) $(HOME_DIR)/bin/
 	
+	sed s:"^#\!.*/bin/python":"#\!/usr/bin/$(PYTHON_INSTALLABLE)":g $(VIRTUALENV_PATH)/bin/devpi-clear-search-index >$(HOME_DIR)/bin/devpi-clear-search-index
+	sed s:"^#\!.*/bin/python":"#\!/usr/bin/$(PYTHON_INSTALLABLE)":g $(VIRTUALENV_PATH)/bin/devpi-export >$(HOME_DIR)/bin/devpi-export
+	sed s:"^#\!.*/bin/python":"#\!/usr/bin/$(PYTHON_INSTALLABLE)":g $(VIRTUALENV_PATH)/bin/devpi-fsck >$(HOME_DIR)/bin/devpi-fsck
+	sed s:"^#\!.*/bin/python":"#\!/usr/bin/$(PYTHON_INSTALLABLE)":g $(VIRTUALENV_PATH)/bin/devpi-gen-config >$(HOME_DIR)/bin/devpi-gen-config
+	sed s:"^#\!.*/bin/python":"#\!/usr/bin/$(PYTHON_INSTALLABLE)":g $(VIRTUALENV_PATH)/bin/devpi-import >$(HOME_DIR)/bin/devpi-import
+	sed s:"^#\!.*/bin/python":"#\!/usr/bin/$(PYTHON_INSTALLABLE)":g $(VIRTUALENV_PATH)/bin/devpi-init >$(HOME_DIR)/bin/devpi-init
 	sed s:"^#\!.*/bin/python":"#\!/usr/bin/$(PYTHON_INSTALLABLE)":g $(VIRTUALENV_PATH)/bin/devpi-server >$(HOME_DIR)/bin/devpi-server
-	chmod 755 $(HOME_DIR)/bin/devpi-server
+	sed s:"^#\!.*/bin/python":"#\!/usr/bin/$(PYTHON_INSTALLABLE)":g $(VIRTUALENV_PATH)/bin/devpi-passwd >$(HOME_DIR)/bin/devpi-passwd
+	chmod 755 $(HOME_DIR)/bin/*
 	@echo "import site; site.addsitedir('$(LIB_DIR)')" > $(RPM_BUILD_ROOT)$(SITEPACKAGES_PATH)/$(NAME).pth
 
 rpm:
