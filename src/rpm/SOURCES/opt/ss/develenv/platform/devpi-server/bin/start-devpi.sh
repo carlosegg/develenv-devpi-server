@@ -6,6 +6,7 @@ if [ "$(ls -al ${DEVPI_REPO_HOME}/|wc -l|grep ^3)" != "" ]; then
 else
    initialize=""
 fi
+[[ "$initialize" != "" ]] && ${DEVPI_SERVER_HOME}/bin/devpi-init --serverdir  ${DEVPI_REPO_HOME} --root-passwd ''
 ${DEVPI_SERVER_HOME}/bin/devpi-server --host=${DEVPI_LISTEN_HOST} \
   --port=${DEVPI_LISTEN_PORT} --outside-url=http://${DEVPI_HOSTNAME}/devpi \
 --serverdir ${DEVPI_REPO_HOME} --start
