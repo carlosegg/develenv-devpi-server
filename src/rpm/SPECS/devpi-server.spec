@@ -27,13 +27,15 @@ Requires:   python%{python3_version_nodots} ss-develenv-devpi-client httpd mod_p
 %{summary}
 
 %install
-mkdir -p $RPM_BUILD_ROOT/%{bindir} $RPM_BUILD_ROOT/%{libdir} 
+mkdir -p $RPM_BUILD_ROOT/%{bindir}
+##$RPM_BUILD_ROOT/%{libdir}
 
 cd %{_srcrpmdir}/..
 make devclean
 cp -r %{_sourcedir}/* $RPM_BUILD_ROOT/
 make install HOME_DIR=$RPM_BUILD_ROOT/%{installdir} RPM_BUILD_ROOT=$RPM_BUILD_ROOT LIB_DIR=%{libdir} SITEPACKAGES_PATH=%{python3_sitearch}
 mkdir -p $RPM_BUILD_ROOT/%{devpi_repo}
+
 %pre
 #Create develenv user if not exists
 if [ "$(id -u develenv 2>/dev/null)" == "" ]; then

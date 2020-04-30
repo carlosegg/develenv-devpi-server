@@ -114,7 +114,8 @@ build-libs: devlibs
 	# copy processed pth to dest site-packages 
 	@echo ">>> installing libs to lib deploy"
 	@mkdir -p $(RPM_BUILD_ROOT)$(SITEPACKAGES_PATH)
-	@cp -r $(VIRTUALENV_PATH)$(PYTHON_SITE_REL)/* $(RPM_BUILD_ROOT)$(LIB_DIR)
+	#cp -r $(VIRTUALENV_PATH)$(PYTHON_SITE_REL)/* $(RPM_BUILD_ROOT)$(LIB_DIR)
+	cp -r $(VIRTUALENV_PATH)$(PYTHON_SITE_REL) $(RPM_BUILD_ROOT)$(LIB_DIR)
 	@rm -Rf $(RPM_BUILD_ROOT)$(LIB_DIR)/pip
 	@rm -Rf $(RPM_BUILD_ROOT)$(LIB_DIR)/pip-*
 
